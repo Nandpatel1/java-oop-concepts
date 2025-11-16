@@ -1,27 +1,39 @@
 package OOPs.Associations_Aggregation_Composition;
+import java.util.*;
 
-class Passport_ {
-    private String passportNumber;
-    Passport_(String passportNumber){
-        this.passportNumber = passportNumber;
+class College {
+    private String name;
+    private String id;
+
+    public College(String name, String id) {
+        this.name = name;
+        this.id = id;
     }
 
-    public String getPassportNumber(){
-        return passportNumber;
+    public void displayDetails() {
+        System.out.println("College Name : " + name);
+        System.out.println("College ID : " + id);
     }
 }
-class Student1 {
-    String name;
-    Passport_ passport;
 
-    Student1(String name, String passportNumber) {
+class University {
+    private String name;
+    private List<College> colleges;
+
+    public University(String name) {
         this.name = name;
-        this.passport = new Passport_(passportNumber);
+        this.colleges = new ArrayList<>();
     }
 
-    public void displayDetails(){
-        System.out.println("Name: " + name);
-        System.out.println("Passport number: " + passport.getPassportNumber());
+    public void addCollege(String collegeName, String collegeId) {
+        colleges.add(new College(collegeName, collegeId));
+    }
+
+    public void displayDetails() {
+        System.out.println("University Name : " + name);
+        for (College college : colleges) {
+            college.displayDetails();
+        }
     }
 }
 
@@ -30,7 +42,16 @@ class Student1 {
 //               Strong relationship.
 public class Composition {
     public static void main(String[] args) {
-        Student1 one = new Student1("One", "222222");
-        one.displayDetails();
+        String universityName = "Global_University";
+        String[] collegeNames = { "COEP", "PICT", "VJTI", "WCE", "PCCOE" };
+        String[] collegeIds = { "CO8543", "PI9514", "VJ8643", "VF569", "PC9246" };
+
+        University university = new University(universityName);
+
+        for (int i = 0; i < collegeNames.length; i++) {
+            university.addCollege(collegeNames[i], collegeIds[i]);
+        }
+
+        university.displayDetails();
     }
 }
