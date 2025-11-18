@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class OuterClass {
     static int val = 10;
     String name = "Nand";
@@ -29,5 +32,7 @@ public class Main {
             }
         };
         sample.execute();
+
+
     }
 }
